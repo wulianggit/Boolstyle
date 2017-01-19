@@ -6,6 +6,7 @@ namespace App\Repositories\Eloquent\Admin;
 use App\Models\Article;
 use App\Repositories\Eloquent\Repository;
 use Storage;
+use zgldh\QiniuStorage\QiniuStorage;
 
 class ArticleRepository extends Repository
 {
@@ -40,6 +41,7 @@ class ArticleRepository extends Repository
         // 如果上传了封面图片,先处理图片上传
         if ($request->hasFile('cover'))
         {
+            // 判断之前是否上传了文章封面,如果有,则删除之前
             $imagePath = $this->uploadImages($request->file('cover'));
             if (!$imagePath) {
                 return false;
@@ -48,7 +50,7 @@ class ArticleRepository extends Repository
         }
         $data['content_html'] = $data['editor-html-code'];
         $data['content_mark'] = $data['editor-markdown-doc'];
-
+        
         if ($article->fill($data)->save())
         {
             if ($data['label'])
@@ -71,14 +73,17 @@ class ArticleRepository extends Repository
     {
         $extension = $image->getClientOriginalExtension();
         $realPath  = $image->getRealPath();
-        $fileName  = date('Y-m-d').uniqid('-').'.'.$extension;
-
-        $result = Storage::disk('upload')->put($fileName, file_get_contents($realPath));
-        if (!$result) {
-            return '';
+        $fileName  = md5(date('Y-m-d').uniqid('-')).'.'.$extension;
+        // 上传到服务器
+        //$result = Storage::disk('upload')->put($fileName, file_get_contents($realPath));
+        // 上传到七牛云
+        $disk = QiniuStorage::disk('qiniu');
+        $result = $disk->put(config('admin.globals.imagePath').$fileName, file_get_contents($realPath));
+        if ($result) {
+            $path = $disk->downloadUrl(config('admin.globals.imagePath').$fileName);
+            return $path->getUrl();
         }
-
-        return $fileName;
+        return '';
     }
 
     /**
@@ -92,9 +97,7 @@ class ArticleRepository extends Repository
     {
         if ($request->hasFile('editormd-image-file')) {
             $path = $this->uploadImages($request->file('editormd-image-file'));
-            $path = $path ? asset('/uploads').'/'.$path : '';
         }
-
-        return $path;
+        return $path ? $path : '';
     }
 }

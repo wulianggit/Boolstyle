@@ -13,4 +13,7 @@ return [
         'start' => 1,
         'limit' => 10,
     ],
+
+    // 七牛上传图片路径
+    'imagePath' => 'boolStyle/images/'
 ];

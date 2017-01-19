@@ -169,6 +169,8 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         // 权限管理
         Zizaco\Entrust\EntrustServiceProvider::class,
+        // 七牛云上传
+        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
     ],
 
     /*

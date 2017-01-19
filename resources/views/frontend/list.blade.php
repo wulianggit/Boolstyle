@@ -28,7 +28,7 @@
                         <!-- begin post-content -->
                         <div class="post-content">
                             <div class="post-image">
-                                <a href="post_detail.html"><img src="{{asset('uploads').'/'.$article['img_path']}}" alt=""></a>
+                                <a href="post_detail.html"><img src="{{$article['img_path']}}" alt=""></a>
                             </div>
                             <!-- begin post-info -->
                             <div class="post-info">
