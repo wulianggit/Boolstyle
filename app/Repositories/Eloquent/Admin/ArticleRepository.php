@@ -53,7 +53,7 @@ class ArticleRepository extends Repository
         
         if ($article->fill($data)->save())
         {
-            if ($data['label'])
+            if (isset($data['label']) && $data['label'])
             {
                 $article->belongsToManyTag()->sync($data['label']);
             }
