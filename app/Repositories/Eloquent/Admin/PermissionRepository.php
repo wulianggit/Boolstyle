@@ -76,6 +76,7 @@ class PermissionRepository extends Repository
     {
         $permissions = $this->model->get(['id','display_name','model'])->toArray();
 
+        $result = [];
         foreach ($permissions as $key => $val)
         {
             $result[$val['model']][] = [
@@ -84,6 +85,6 @@ class PermissionRepository extends Repository
             ];
         }
 
-        return $result ? $result : [];
+        return $result;
     }
 }
