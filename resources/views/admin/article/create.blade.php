@@ -18,7 +18,7 @@
     <div class="clearfix"></div>
 
     @inject('catePresenter', 'App\Repositories\Presenter\Admin\CategoryPresenter')
-    @inject('tagPresenter', 'App\Repositories\Presenter\Admin\tagPresenter')
+    @inject('tagPresenter', 'App\Repositories\Presenter\Admin\TagPresenter')
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
