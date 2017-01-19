@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "afbf479e60418a302eb2565199af9635",
-    "content-hash": "6c7d9e721e3092dcd4bf1cc38ab5894e",
+    "hash": "01edfbca91184c1837330c325367ce72",
+    "content-hash": "ee3aa4377dd22b78abf37a4232df882a",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2503,16 +2503,16 @@
         },
         {
             "name": "zizaco/entrust",
-            "version": "5.2.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Zizaco/entrust.git",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9"
+                "reference": "992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/Zizaco/entrust/3623cc052937d9e62543402b50f24065720d44b9.zip",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9",
+                "url": "https://packagist.phpcomposer.com/files/Zizaco/entrust/992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09.zip",
+                "reference": "992e484f90a4d00b8ec0f42e8a59ba0b07ba1e09",
                 "shasum": ""
             },
             "require": {
@@ -2567,7 +2567,7 @@
                 "permission",
                 "roles"
             ],
-            "time": "2016-12-29 06:25:06"
+            "time": "2016-12-29 06:24:46"
         }
     ],
     "packages-dev": [

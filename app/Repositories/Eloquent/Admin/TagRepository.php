@@ -84,7 +84,7 @@ class TagRepository extends Repository
     public function destoryTag ($id)
     {
         $label = $this->model->find($id);
-
+        // TODO 删除标签时,判断该标签下是否有文章,如果有则不能删除
         if ($label)
         {
             $result = $this->model->where('id', $id)->update(['status'=>0]);

@@ -126,7 +126,7 @@ class CategoryRepository extends Repository
     public function destoryCategory ($id)
     {
         $category = $this->model->find($id);
-
+        // TODO 删除分类时,判断该分类下是否有文章,如果有则不能删除
         if ($category)
         {
             $result = $this->model->where('id',$id)->update(['status'=>0]);
