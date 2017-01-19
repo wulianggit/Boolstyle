@@ -84,6 +84,6 @@ class PermissionRepository extends Repository
             ];
         }
 
-        return $result;
+        return $result ? $result : [];
     }
 }
