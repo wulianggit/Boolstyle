@@ -89,7 +89,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">{{ trans('label.category.parentCate') }}</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="select2_single form-control" tabindex="-1" name="pid" >
-                                    {!! $catePresenter->getTopCate($topCates) !!}
+                                    {!! $catePresenter->getTopCate($topCate) !!}
                                 </select>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         <div class="form-group {{ $errors->has('sort') ? 'parsley-error' : '' }}">
                             <label for="sort" class="control-label col-xs-12 col-sm-3 col-md-3">{{ trans('label.category.sort') }}</label>
                             <div class="col-xs-12 col-sm-9 col-md-9">
-                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="{{ trans() }}" value="{{old('sort')}}">
+                                <input type="number" class="form-control" id="sort" min="0" name="sort" placeholder="{{ trans('label.category.sort') }}" value="{{old('sort')}}">
                                 @if ($errors->has('sort'))
                                     <p class="text-danger text-left">
                                         <strong>{{ $errors->first('sort') }}</strong>

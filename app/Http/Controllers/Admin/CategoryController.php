@@ -33,12 +33,12 @@ class CategoryController extends Controller
     public function index()
     {
         // 获取顶级分类列表
-        $topCates = $this->model->findByField('pid', 0, ['id', 'name']);
+        $topCate = $this->model->findByField('pid', 0, ['id', 'name']);
 
         // 获取所有文章分类列表
         $cateList = $this->model->getCateList();
         
-        return view('admin.category.list')->with(compact('topCates', 'cateList'));
+        return view('admin.category.list')->with(compact('topCate', 'cateList'));
     }
 
 
