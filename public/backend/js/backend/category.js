@@ -15,7 +15,8 @@ var Category = function () {
             // 清空表单
             $("#cateForm input.form-control").val('');
             // 选中当前分类为上级分类
-            select2.val($(this).attr('data-pid')).trigger('change');
+            // 获取或设置值：select2("val")（老版）；$("select").val()（新版）
+            $("select").val($(this).attr('data-pid')).trigger('change');
         });
 
         // 修改分类按钮事件
