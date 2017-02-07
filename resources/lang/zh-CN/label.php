@@ -14,7 +14,7 @@ return [
         'dropZoneTitle' => '拖拽图片到这里',
         'coverSelect'   => '选择图片',
         'introduce'     => '简介',
-        'placeIntro'    => '请输入文章标签',
+        'placeIntro'    => '请输入文章简介',
         'content'       => '内容'
     ],
     

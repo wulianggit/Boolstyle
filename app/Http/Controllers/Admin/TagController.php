@@ -78,8 +78,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        $label = $this->model->editLabel($id);
-        return response()->json($label);
+        $tag = $this->model->editTag($id);
+        return response()->json($tag);
     }
 
     /**
