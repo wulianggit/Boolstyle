@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('frontend/home');
-});
 
+Route::get('/', 'Frontend\HomeController@index');
 Route::auth();
 
 Route::group(['namespace' => 'Frontend', 'prefix' => 'frontend'], function () {

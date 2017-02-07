@@ -24,10 +24,10 @@
                         Posted By <a href="#">admin</a> <span class="divider">|</span> 10 June 2015 <span class="divider">|</span> <a href="#">Sports</a>, <a href="#">Mountain</a>, <a href="#">Bike</a> <span class="divider">|</span> 2 Comments
                     </div>
 
-                   <div class="markdown-body">
+                    <div class="markdown-body">
                        {!! $article['content_html'] !!}
-                   </div>
-
+                    </div>
+                    <div id="SOHUCS" sid="{{$article['id']}}"></div>
                 </div>
                 <!-- end post-detail -->
             </div>
@@ -40,8 +40,13 @@
 @endsection
 
 @section('js')
+    <script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
     <script src="{{url('/frontend/js/highlight.pack.js')}}"></script>
     <script>
         hljs.initHighlighting();
+        window.changyan.api.config({
+            appid: 'cysNNkQol',
+            conf: 'prod_b43cadf588d43b45ff6349aa96644a6b'
+        });
     </script>
 @endsection
