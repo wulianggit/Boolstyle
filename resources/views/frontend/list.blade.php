@@ -2,52 +2,58 @@
 
 @section('content')
 <!-- begin content -->
-<div id="content" class="content">
+<div id="content" class="content" style="background: #f7f8fa !important;">
     <!-- begin container -->
     <div class="container">
         <!-- begin row -->
-        <div class="row row-space-30">
+        <div class="row row-space-30" style="margin: 50px 0 0 0">
             <!-- begin col-9 -->
             <div class="col-md-9">
                 <!-- begin post-list -->
                 <ul class="post-list">
                     @foreach($articles as $article)
-                    <li>
+                    <li style="border-left: 2px solid #ddd;">
                         <!-- begin post-left-info -->
                         <div class="post-left-info">
                             <div class="post-date">
-                                <span class="day">03</span>
-                                <span class="month">SEPT</span>
+                                <span class="day">{{date('d', strtotime($article->created_at))}}</span>
+                                <span class="month">{{date('M', strtotime($article->created_at))}}</span>
                             </div>
                             <div class="post-likes">
-                                <i class="fa fa-heart-o"></i>
+                                <i class="glyphicon glyphicon-eye-open"></i>
                                 <span class="number">520</span>
                             </div>
                         </div>
                         <!-- end post-left-info -->
                         <!-- begin post-content -->
-                        <div class="post-content">
-                            <div class="post-image">
-                                <a href="post_detail.html"><img src="{{$article['img_path']}}" alt=""></a>
-                            </div>
+                        <div class="post-content" style="background: #fff; box-shadow: 0px 2px 5px 3px #eff1f8;">
+                            <h4 class="post-title" style="padding: 15px">
+                                <a href="{{url('frontend/home/'.$article->id)}}">{{$article->title}}</a>
+                            </h4>
+                            @if($article->img_path)
+                                <div class="post-image" style="left: 2%;">
+                                    <a href="{{url('frontend/home/'.$article->id)}}">
+                                        <img src="{{$article->img_path}}" width="96%" alt="{{$article->title}}">
+                                    </a>
+                                </div>
+                            @endif
                             <!-- begin post-info -->
                             <div class="post-info">
-                                <h4 class="post-title">
-                                    <a href="{{url('frontend/home/'.$article['id'])}}">{{$article['title']}}</a>
-                                </h4>
-                                <div class="post-by">
-                                    Posted By <a href="#">admin</a> <span class="divider">|</span> <a href="#">Sports</a>, <a href="#">Mountain</a>, <a href="#">Bike</a> <span class="divider">|</span> 2 Comments
+                                <div class="post-desc" style="padding: 0 15px">
+                                    {{$article->introduce}}
                                 </div>
-                                <div class="post-desc">
-                                    {{$article['introduce']}}
+                                <div class="post-by" style="border-top: 2px solid #f7f8fa; padding: 20px;">
+                                    <span>
+                                        <i class="glyphicon glyphicon-tags"></i> &nbsp;
+                                        @if($article->tags)
+                                            @foreach($article->tags as $tag)
+                                                <a href="#">{{$tag->name}} </a>
+                                            @endforeach
+                                        @endif
+                                    </span>
+                                    <span class="pull-right"><i class="glyphicon glyphicon-user"></i> &nbsp; admin</span>
                                 </div>
                             </div>
-                            <!-- end post-info -->
-                            <!-- begin read-btn-container -->
-                            <div class="read-btn-container">
-                                <a href="post_detail.html">Read More <i class="fa fa-angle-double-right"></i></a>
-                            </div>
-                            <!-- end read-btn-container -->
                         </div>
                         <!-- end post-content -->
                     </li>
@@ -56,17 +62,9 @@
                 <!-- end post-list -->
 
                 <!-- begin pagination -->
-                <div class="section-container">
+                <div class="section-container" style="margin-bottom: 0px">
                     <div class="pagination-container text-center">
-                        <ul class="pagination m-t-0 m-b-0">
-                            <li class="disabled"><a href="javascript:;">Prev</a></li>
-                            <li class="active"><a href="javascript:;">1</a></li>
-                            <li><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><span class="text">...</span></li>
-                            <li><a href="javascript:;">1797</a></li>
-                            <li><a href="javascript:;">Next</a></li>
-                        </ul>
+                        {{ $articles->links() }}
                     </div>
                 </div>
                 <!-- end pagination -->
