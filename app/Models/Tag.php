@@ -20,7 +20,7 @@ class Tag extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      * @author wuliang
      */
-    public function belongsToManyArticle()
+    public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'article_tag', 'tag_id', 'article_id')->withTimestamps();
     }

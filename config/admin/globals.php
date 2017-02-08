@@ -14,6 +14,9 @@ return [
         'limit' => 10,
     ],
 
+    // 文章列表每页显示的文章数
+    'pageSize' => 5,
+
     // 七牛上传图片路径
     'imagePath' => 'boolStyle/images/'
 ];

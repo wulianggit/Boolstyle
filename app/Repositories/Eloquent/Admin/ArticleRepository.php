@@ -5,7 +5,6 @@ namespace App\Repositories\Eloquent\Admin;
 
 use App\Models\Article;
 use App\Repositories\Eloquent\Repository;
-use Storage;
 use zgldh\QiniuStorage\QiniuStorage;
 
 class ArticleRepository extends Repository
@@ -55,7 +54,7 @@ class ArticleRepository extends Repository
         {
             if (isset($data['label']) && $data['label'])
             {
-                $article->belongsToManyTag()->sync($data['label']);
+                $article->tags()->sync($data['label']);
             }
             return true;
         }

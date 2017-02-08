@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent\Frontend;
 
-
 use App\Models\Article;
 use App\Repositories\Eloquent\Repository;
 
@@ -20,7 +19,7 @@ class ArticleRepository extends Repository
      */
     public function getArticlesList ()
     {
-        $articles = $this->model->orderBy('created_at','desc')->get(['id','title','introduce', 'img_path'])->toArray();
+        $articles = $this->model->orderBy('created_at','desc')->paginate(config('admin.globals.pageSize'));
         return $articles;
     }
 
