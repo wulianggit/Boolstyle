@@ -16,8 +16,10 @@ Route::get('/', 'Frontend\HomeController@index');
 Route::auth();
 
 Route::group(['namespace' => 'Frontend', 'prefix' => 'frontend'], function () {
-    Route::get('/home', 'HomeController@index');
-    Route::get('/home/{id}', 'HomeController@show');
+    Route::get('/', 'HomeController@index');
+    Route::get('/article/{id}', 'ArticleController@show')->where(['id' => '\d+']);
+    Route::get('/category/{id}', 'CategoryController@show')->where(['id' => '\d+']);
+    Route::get('/tag/{id}', 'TagController@show')->where(['id' => '\d+']);
 });
 
 Route::group(['namespace' => 'Admin','prefix' => 'admin', 'middleware' => ['auth']],
