@@ -28,11 +28,11 @@
                         <!-- begin post-content -->
                         <div class="post-content" style="background: #fff; box-shadow: 0px 2px 5px 3px #eff1f8;">
                             <h4 class="post-title" style="padding: 15px">
-                                <a href="{{url('frontend/home/'.$article->id)}}">{{$article->title}}</a>
+                                <a href="{{url('frontend/article/'.$article->id)}}">{{$article->title}}</a>
                             </h4>
                             @if($article->img_path)
                                 <div class="post-image" style="left: 2%;">
-                                    <a href="{{url('frontend/home/'.$article->id)}}">
+                                    <a href="{{url('frontend/article/'.$article->id)}}">
                                         <img src="{{$article->img_path}}" width="96%" alt="{{$article->title}}">
                                     </a>
                                 </div>
@@ -47,7 +47,7 @@
                                         <i class="glyphicon glyphicon-tags"></i> &nbsp;
                                         @if($article->tags)
                                             @foreach($article->tags as $tag)
-                                                <a href="#">{{$tag->name}} </a>
+                                                <a href="{{url('frontend/tag/'.$tag->id)}}">{{$tag->name}} </a>
                                             @endforeach
                                         @endif
                                     </span>
