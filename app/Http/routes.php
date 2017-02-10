@@ -18,6 +18,7 @@ Route::auth();
 Route::group(['namespace' => 'Frontend', 'prefix' => 'frontend'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/article/{id}', 'ArticleController@show')->where(['id' => '\d+']);
+    Route::get('/home/{id}', 'ArticleController@show')->where(['id' => '\d+']);
     Route::get('/category/{id}', 'CategoryController@show')->where(['id' => '\d+']);
     Route::get('/tag/{id}', 'TagController@show')->where(['id' => '\d+']);
 });

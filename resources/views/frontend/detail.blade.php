@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/monokai-sublime.css')}}">
 @endsection
 @section('content')
-<div id="content" class="content">
+<div id="content" class="content" style="background: #f7f8fa !important;">
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
