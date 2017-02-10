@@ -21,7 +21,7 @@
                             </div>
                             <div class="post-likes">
                                 <i class="glyphicon glyphicon-eye-open"></i>
-                                <span class="number">520</span>
+                                <span class="number">{{array_sum(array_column(json_decode($article->visitors, true), 'clicks'))}}</span>
                             </div>
                         </div>
                         <!-- end post-left-info -->
@@ -43,14 +43,16 @@
                                     {{$article->introduce}}
                                 </div>
                                 <div class="post-by" style="border-top: 2px solid #f7f8fa; padding: 20px;">
-                                    <span>
-                                        <i class="glyphicon glyphicon-tags"></i> &nbsp;
-                                        @if($article->tags)
+
+                                    @if($article->tags)
+                                        <span>
+                                            <i class="glyphicon glyphicon-tags"></i> &nbsp;
                                             @foreach($article->tags as $tag)
                                                 <a href="{{url('frontend/tag/'.$tag->id)}}">{{$tag->name}} </a>
                                             @endforeach
-                                        @endif
-                                    </span>
+                                        </span>
+                                    @endif
+
                                     <span class="pull-right"><i class="glyphicon glyphicon-user"></i> &nbsp; admin</span>
                                 </div>
                             </div>

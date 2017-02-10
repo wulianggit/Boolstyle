@@ -14,6 +14,7 @@
     <link href="{{asset('frontend/css/style.min.css')}}" rel="stylesheet" />
     <link href="{{asset('frontend/css/style-responsive.min.css')}}" rel="stylesheet" />
     <link href="{{asset('frontend/css/theme/default.css')}}" id="theme" rel="stylesheet" />
+    <link href="{{asset('frontend/css/index.css')}}" id="theme" rel="stylesheet" />
     <!-- ================== END BASE CSS STYLE ================== -->
 
     @yield('css')
@@ -36,11 +37,12 @@
 
     @yield('content')
 
-    @include('layouts.footer')
+    <a href="javascript:(0)" class="cd-top">Top</a>
+    {{--@include('layouts.footer')--}}
 
     <div id="footer-copyright" class="footer-copyright">
         <div class="container" style="text-align: center">
-            <span class="copyright">© 2017 冷无缺 All Right Reserved | 陇ICP备17000438号-1 | 博客 | 技术</span>
+            <span class="copyright">© {{date('Y',time())}} 冷无缺 All Right Reserved | 陇ICP备17000438号-1 | 博客 | 技术</span>
         </div>
     </div>
 
@@ -52,6 +54,8 @@
     <script src="{{asset('frontend/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('frontend/plugins/jquery-cookie/jquery.cookie.js')}}"></script>
     <script src="{{asset('frontend/js/apps.min.js')}}"></script>
+    <script src="{{asset('frontend/js/modernizr.js')}}"></script>
+    <script src="{{asset('frontend/js/backtop.js')}}"></script>
     <script>
         $(document).ready(function() {
             App.init();

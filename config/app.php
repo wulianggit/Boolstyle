@@ -171,6 +171,8 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         // 七牛云上传
         zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class,
+        // 统计文章浏览次数
+        Weboap\Visitor\VisitorServiceProvider::class,
     ],
 
     /*
