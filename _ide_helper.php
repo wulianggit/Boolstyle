@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.2.45 on 2017-01-19.
+ * Generated for Laravel 5.2.45 on 2017-02-10.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11743,6 +11743,118 @@ namespace {
          */
         public static function routeNeedsRoleOrPermission($route, $roles, $permissions, $result = null, $requireAll = false){
             \Zizaco\Entrust\Entrust::routeNeedsRoleOrPermission($route, $roles, $permissions, $result, $requireAll);
+        }
+        
+    }
+
+
+    class Visitor extends \Weboap\Visitor\Facades\VisitorFacade{
+        
+        /**
+         * 
+         *
+         * @param null $ip
+         * @return null 
+         * @static 
+         */
+        public static function get($ip = null){
+            return \Weboap\Visitor\Visitor::get($ip);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function log($articleId){
+            return \Weboap\Visitor\Visitor::log($articleId);
+        }
+        
+        /**
+         * 
+         *
+         * @param $ip
+         * @static 
+         */
+        public static function forget($ip){
+            return \Weboap\Visitor\Visitor::forget($ip);
+        }
+        
+        /**
+         * 
+         *
+         * @param $ip
+         * @return bool 
+         * @static 
+         */
+        public static function has($ip){
+            return \Weboap\Visitor\Visitor::has($ip);
+        }
+        
+        /**
+         * 
+         *
+         * @param $ip
+         * @param $articleId
+         * @return bool 
+         * @author wuliang
+         * @static 
+         */
+        public static function hasPost($ip, $articleId){
+            return \Weboap\Visitor\Visitor::hasPost($ip, $articleId);
+        }
+        
+        /**
+         * 
+         *
+         * @param null $ip
+         * @return mixed 
+         * @static 
+         */
+        public static function count($ip = null){
+            return \Weboap\Visitor\Visitor::count($ip);
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function all($collection = false){
+            return \Weboap\Visitor\Visitor::all($collection);
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function clicks(){
+            return \Weboap\Visitor\Visitor::clicks();
+        }
+        
+        /**
+         * 
+         *
+         * @param $start
+         * @param $end
+         * @return mixed 
+         * @static 
+         */
+        public static function range($start, $end){
+            return \Weboap\Visitor\Visitor::range($start, $end);
+        }
+        
+        /**
+         * clear database records / cached results.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function clear(){
+            \Weboap\Visitor\Visitor::clear();
         }
         
     }

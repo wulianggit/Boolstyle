@@ -35,4 +35,14 @@ class Article extends Model
     {
         return $this->hasOne('App\Models\Category', 'id', 'cate_id');
     }
+
+    /**
+     * 文章与浏览次数一对多关系
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @author wuliang
+     */
+    public function visitors()
+    {
+        return $this->hasMany('App\Models\VisitorRegistry');
+    }
 }

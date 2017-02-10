@@ -5,6 +5,7 @@ use App\Repositories\Eloquent\Frontend\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Visitor;
 
 class ArticleController extends Controller
 {
@@ -32,8 +33,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        // 记录文章浏览记录
+        Visitor::log($id);
         $article = $this->article->getArticleContentById($id);
-        //dd($article);
         return view('frontend.detail')->with(compact('article'));
     }
 }
