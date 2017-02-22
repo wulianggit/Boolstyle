@@ -6,7 +6,17 @@ use Zizaco\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
+    use ActionButton;
+
+    protected $action;
+
     protected $fillable = ['name', 'display_name', 'description'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->action = 'role';
+    }
 
     /**
      * 将角色字段转换为小写

@@ -27,6 +27,7 @@
                             <th>描述</th>
                             <th>添加时间</th>
                             <th>更新时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,7 +43,7 @@
 @section('js')
     <script src="{{asset('backend/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('backend/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('backend/js/backend/permission.js')}}"></script>
+    <script src="{{asset('backend/js/backend/permission.js?v=')}}{!! time() !!}"></script>
     <script type="text/javascript">
         permission.permissionList();
         // flash message auto close

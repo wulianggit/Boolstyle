@@ -13,8 +13,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Article extends Model
 {
+    use ActionButton;
+
+    protected $action;
+
     protected $table = 'articles';
+
     protected $fillable = ['title', 'keyword', 'cate_id', 'introduce', 'img_path', 'content_html', 'content_mark'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->action = 'article';
+    }
 
     /**
      * 文章和标签多对多关联

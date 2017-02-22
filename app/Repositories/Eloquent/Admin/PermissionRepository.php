@@ -41,29 +41,33 @@ class PermissionRepository extends Repository
         // 排序方式
         $sortType = request('order.0.dir', 'ASC');
 
-        $permission = $this->model;
+        $permissions= $this->model;
 
         if ($keyWords) {
             if ($regex != 'false') {
-                $permission = $permission->where('name', 'like', '%' . $keyWords . '%')
+                $permissions = $permissions->where('name', 'like', '%' . $keyWords . '%')
                     ->orWhere('display_name', 'like', '%' . $keyWords . '%');
             } else {
-                $permission = $permission->where('name', $keyWords)
+                $permissions = $permissions->where('name', $keyWords)
                     ->orWhere('display_name', $keyWords);
             }
         }
 
         // 总数
-        $total = $permission->count();
+        $total = $permissions->count();
 
-        $permission = $permission->orderBy($sortField, $sortType);
-        $permission = $permission->offset($start)->limit($length)->get()->toArray();
+        $permissions = $permissions->orderBy($sortField, $sortType);
+        $permissions = $permissions->offset($start)->limit($length)->get();
+
+        foreach ($permissions as &$permission) {
+            $permission['actionButton'] = $permission->getActionButton();
+        }
 
         return [
             'draw'  => $draw,
             'count' => $total,
             'total' => $total,
-            'data'  => $permission,
+            'data'  => $permissions->toArray(),
         ];
     }
 

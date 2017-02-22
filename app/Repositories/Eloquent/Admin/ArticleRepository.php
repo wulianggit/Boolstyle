@@ -22,8 +22,17 @@ class ArticleRepository extends Repository
      */
     public function getArticleList ()
     {
-        return $this->model->with('category')->where('status', 1)
-            ->get(['id', 'cate_id', 'title', 'created_at', 'updated_at'])->toArray();
+        $articles =  $this->model->with('category')->where('status', 1)
+            ->get(['id', 'cate_id', 'title', 'created_at', 'updated_at']);
+
+        if ($articles) {
+            foreach ($articles as &$article) 
+            {
+                $article['actionButton'] = $article->getActionButton();
+            }
+        }
+
+        return $articles->toArray();
     }
 
     /**

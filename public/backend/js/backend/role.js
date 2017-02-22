@@ -34,6 +34,12 @@ var role = function () {
                 {
                     "data" : "updated_at",
                     "name" : "updated_at"
+                },
+                {
+                    "data" : "actionButton",
+                    "name" : "actionButton",
+                    "type" : "html",
+                    "orderable" : false
                 }
             ],
             "language":{

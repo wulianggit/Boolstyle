@@ -80,7 +80,9 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $permissions = $this->model->show($id);
+        $permissions['permission'] = $this->permission->groupPermissionByModel();
+        return view('admin.role.show')->with(compact('permissions'));
     }
 
     /**

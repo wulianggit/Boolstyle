@@ -81,7 +81,7 @@ class TagRepository extends Repository
      * @return bool
      * @author wuliang
      */
-    public function destoryTag ($id)
+    public function destroyTag ($id)
     {
         $label = $this->model->find($id);
         // TODO 删除标签时,判断该标签下是否有文章,如果有则不能删除

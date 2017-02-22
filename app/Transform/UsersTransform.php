@@ -20,6 +20,7 @@ class UsersTransform extends Transform
             'Role' => '管理员',
             'Email' => $user['email'],
             'AddTime' => $user['created_at'],
+            'ActionButton' => $user['actionButton'],
         ];
     }
 }

@@ -43,6 +43,9 @@ return [
         'display_name' => '名称',
         'description'  => '描述',
         'setAccess'    => '设置权限',
+        'show'         => '查看角色权限',
+        'module'       => '模块',
+        'permission'   => '权限'
     ],
 
     'model' => [
@@ -50,5 +53,15 @@ return [
         'role'       => '角色管理',
         'permission' => '权限管理',
         'article'    => '文章管理',
+    ],
+
+    'user' => [
+        'add'  => '添加用户',
+        'list' => '用户列表',
+        'name' => '姓名',
+        'email'=> '用户邮箱',
+        'username' => '用户名',
+        'password' => '密码',
+        'confirm_password' => '确认密码',
     ],
 ];
