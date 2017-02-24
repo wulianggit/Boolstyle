@@ -15,6 +15,7 @@
 	<link href="{{asset('backend/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 	{{--NProgress--}}
 	<link href="{{asset('backend/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
+	<link href="{{asset('backend/css/components.min.css')}}" rel="stylesheet">
 	{{--Custom Theme Style--}}
 	@yield('css')
 	<link href="{{asset('backend/build/css/custom.min.css')}}" rel="stylesheet">

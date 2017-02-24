@@ -28,6 +28,7 @@
                             <th>角色</th>
                             <th>邮箱</th>
                             <th>添加时间</th>
+                            <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +43,7 @@
 @section('js')
 <script src="{{asset('backend/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('backend/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('backend/js/backend/usersList.js')}}"></script>
+<script src="{{asset('backend/js/backend/usersList.js?v=')}}{!! time() !!}"></script>
 <script type="text/javascript">
     usersList.init();
     // flash message auto close

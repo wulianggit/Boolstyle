@@ -41,29 +41,33 @@ class RoleRepository extends Repository
         // 排序方式
         $sortType = request('order.0.dir', 'ASC');
 
-        $role = $this->model;
+        $roles = $this->model;
 
         if ($keyWords) {
             if ($regex != 'false') {
-                $role = $role->where('name', 'like', '%' . $keyWords . '%')
+                $roles = $roles->where('name', 'like', '%' . $keyWords . '%')
                     ->orWhere('display_name', 'like', '%' . $keyWords . '%');
             } else {
-                $role = $role->where('name', $keyWords)
+                $roles = $roles->where('name', $keyWords)
                     ->orWhere('display_name', $keyWords);
             }
         }
 
         // 总数
-        $total = $role->count();
+        $total = $roles->count();
 
-        $role = $role->orderBy($sortField, $sortType);
-        $role = $role->offset($start)->limit($length)->get()->toArray();
+        $roles = $roles->orderBy($sortField, $sortType);
+        $roles = $roles->offset($start)->limit($length)->get();
+
+        foreach ($roles as &$role) {
+            $role['actionButton'] = $role->getActionButton(false);
+        }
 
         return [
             'draw'  => $draw,
             'count' => $total,
             'total' => $total,
-            'data'  => $role,
+            'data'  => $roles->toArray(),
         ];
     }
 
@@ -86,5 +90,27 @@ class RoleRepository extends Repository
         } else {
             return false;
         }
+    }
+
+    /**
+     * 获取所有角色
+     * @return mixed
+     * @author wuliang
+     */
+    public function getRoles ()
+    {
+        return $this->model->get();
+    }
+
+    /**
+     * 查看用户权限
+     * @param $id
+     *
+     * @return mixed
+     * @author wuliang
+     */
+    public function show($id)
+    {
+        return $this->model->select('id')->with('permission')->find($id)->toArray();
     }
 }

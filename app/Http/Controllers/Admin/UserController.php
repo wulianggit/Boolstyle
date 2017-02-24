@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\UserRequest;
+use App\Repositories\Eloquent\Admin\RoleRepository;
 use App\Repositories\Eloquent\Admin\UserRepository;
 use App\Transform\UsersTransform;
 use Illuminate\Http\Request;
@@ -17,6 +18,11 @@ class UserController extends Controller
     private $model;
 
     /**
+     * @var
+     */
+    private $role;
+
+    /**
      * @var \App\Transform\UsersTransform
      */
     protected $usersTransform;
@@ -27,10 +33,15 @@ class UserController extends Controller
      * @author Wally
      * @param  UsersTransform $usersTransform [description]
      * @param  UserRepository $userRepository [description]
+     * @param  RoleRepository $roleRepository [description]
      */
-    public function __construct(UsersTransform $usersTransform, UserRepository $userRepository)
-    {
+    public function __construct(
+        UsersTransform $usersTransform, 
+        UserRepository $userRepository,
+        RoleRepository $roleRepository
+    ) {
         $this->model = $userRepository;
+        $this->role  = $roleRepository;
         $this->usersTransform = $usersTransform;
     }
 
@@ -52,7 +63,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = $this->role->getRoles();
+        return view('admin.user.create')->with(compact('roles'));
     }
 
     /**
@@ -63,13 +75,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data   = $request->all();
-        $result = $this->model->create([
-            'name'     => $data['name'],
-            'username' => $data['username'],
-            'password' => bcrypt($data['password']),
-            'email'    => $data['email']
-        ]);
+        $result = $this->model->store($request->all());
 
         if ($result) {
             flash(trans('alert.user.create_success'), 'success');
@@ -134,13 +140,12 @@ class UserController extends Controller
      */
     public function ajaxGetUserList () 
     {
-        $draw = request('draw', 1);
-        $user = $this->model->all()->toArray();
+        $result = $this->model->ajaxGetUserList();
         return response()->json([
-            'draw' => $draw,
-            'recordsTotal' => 10,
-            'recordsFiltered' => 10,
-            'data' => $this->usersTransform->transformCollection($user),
+            'draw' => request('draw', 1),
+            'recordsTotal' => $result['count'],
+            'recordsFiltered' => $result['total'],
+            'data' => $this->usersTransform->transformCollection($result['data']),
         ]);
     }
 }

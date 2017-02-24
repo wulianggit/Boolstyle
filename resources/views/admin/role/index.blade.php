@@ -27,6 +27,7 @@
                             <th>描述</th>
                             <th>添加时间</th>
                             <th>更新时间</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +37,12 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="draggable" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')

@@ -10,7 +10,8 @@ var usersList = function (){
 				{"data" : "UserName", "orderable" : false},
 				{"data" : "Role", "orderable" : false},
 				{"data" : "Email", "orderable" : false},
-				{"data" : "AddTime"}
+				{"data" : "AddTime"},
+				{"data" : "ActionButton"},
 			],
 			"language":{
                 "search":"搜索",

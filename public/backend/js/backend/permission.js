@@ -34,6 +34,12 @@ var permission = function () {
                 {
                     "data" : "updated_at",
                     "name" : "updated_at"
+                },
+                {
+                    "data" : "actionButton",
+                    "name" : "actionButton",
+                    "orderable" : false,
+                    "type" : "html"
                 }
             ],
             "language":{

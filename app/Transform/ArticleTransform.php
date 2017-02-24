@@ -14,7 +14,7 @@ class ArticleTransform extends Transform
             'Category'     => $article['category']['name'],
             'AddTime'      => $article['created_at'],
             'UpdateTime'   => $article['updated_at'],
-            'ActionButton' => '删除'
+            'ActionButton' => $article['actionButton']
         ];
     }
 }

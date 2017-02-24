@@ -109,7 +109,7 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $result = $this->model->destoryTag($id);
+        $result = $this->model->destroyTag($id);
 
         if ($result) {
             flash(trans('alert.tag.delete_success'), 'success');

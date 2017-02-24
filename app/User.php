@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\ActionButton;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
@@ -12,7 +13,10 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
  */
 class User extends Authenticatable
 {
-    use EntrustUserTrait;
+    use EntrustUserTrait, ActionButton;
+
+    protected $action;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,4 +34,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','updated_at',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->action = 'user';
+    }
+
+    /**
+     * 用户和角色多对多关系
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @author wuliang
+     */
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role','role_user','user_id','role_id');
+    }
 }
