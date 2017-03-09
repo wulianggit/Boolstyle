@@ -8,13 +8,14 @@ class CategoryPresenter
     /**
      * 处理文章分类
      *
-     * @param array $cates [分类数据]
-     * @param bool  $isTop [是否仅为顶级分类]
+     * @param array $cates  [分类数据]
+     * @param int   $cateId [分类id]
+     * @param bool  $isTop  [是否仅为顶级分类]
      *
      * @return string
      * @author wuliang
      */
-    public function getTopCate ($cates, $isTop = true)
+    public function getTopCate ($cates, $cateId = 0, $isTop = true)
     {
         if ($isTop) {
             $option = "<option value='0'>顶级分类</option>";
@@ -25,11 +26,11 @@ class CategoryPresenter
         if (!empty($cates)) {
             foreach ($cates as $key => $cate)
             {
-                $option .= "<option value='{$cate['id']}'>{$cate['name']}</option>";
+                $option .= "<option value='{$cate['id']}' if($cateId == {$cate['id']}) selected>{$cate['name']}</option>";
                 if (isset($cate['child']) && !$isTop) {
                     foreach ($cate['child'] as $child)
                     {
-                        $option .= "<option value='{$child['id']}'>&nbsp;&nbsp;&nbsp;&nbsp;{$child['name']}</option>";
+                        $option .= "<option value='{$child['id']}'  if($cateId == {$child['id']}) selected >&nbsp;&nbsp;&nbsp;&nbsp;{$child['name']}</option>";
                     }
                 }
             }

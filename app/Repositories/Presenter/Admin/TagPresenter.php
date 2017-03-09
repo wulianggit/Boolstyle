@@ -7,18 +7,21 @@ class TagPresenter
     /**
      * 处理标签下拉选项
      * @param $labels
+     * @param $tagIds
      *
      * @return string
      * @author wuliang
      */
-    public function tagSelectOption ($labels)
+    public function tagSelectOption ($labels, $tagIds = [])
     {
         $option = "<option value='0'>请选择文章标签</option>";
 
         if (!empty($labels)) {
             foreach ($labels as $key => $label)
             {
-                $option .= "<option value='{$label['id']}'>{$label['name']}</option>";
+                in_array($label['id'], $tagIds)
+                    ? $option .= "<option value='{$label['id']}' selected>{$label['name']}</option>"
+                    : $option .= "<option value='{$label['id']}'>{$label['name']}</option>";
             }
         }
 

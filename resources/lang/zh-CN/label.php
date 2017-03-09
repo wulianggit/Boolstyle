@@ -2,6 +2,7 @@
 return [
     'article' => [
         'add'           => '发布文章',
+        'edit'          => '修改文章',
         'list'          => '文章列表',
         'title'         => '标题',
         'palceTitle'    => '请输入文章标题',
