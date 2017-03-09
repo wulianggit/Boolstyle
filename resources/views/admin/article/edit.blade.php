@@ -28,15 +28,18 @@
                         {{ trans('label.article.list') }}
                     </a>
                     <h2 class="pull-right" style="margin-right:10px;">
-                        {{ trans('label.article.add') }}
+                        {{ trans('label.article.edit') }}
                     </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
                     <form class="form-horizontal form-label-left" novalidate="" method="post"
-                          action="{{ url('admin/article') }}" enctype="multipart/form-data">
+                          action="{{ url('admin/article/'.$article->id) }}" enctype="multipart/form-data">
                         {{csrf_field()}}
+                        <input type="hidden" name="_method" value="PATCH">
+                        <input type="hidden" name="id" value="{{$article->id}}">
+                        <input type="hidden" name="img_path" value="{{$article->img_path}}">
 
                         <div class="item form-group {{$errors->has('title') ? 'bad' : ''}}">
                             <label class="col-md-12 col-sm-12 col-xs-12" for="title">
@@ -45,7 +48,7 @@
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <input id="title" class="form-control col-md-6 col-xs-12 col-sm-8"
                                        name="title" placeholder="{{ trans('label.article.palceTitle') }}"
-                                       required="required" type="text" value="{{old('title')}}">
+                                       required="required" type="text" value="{{$article->title}}">
                             </div>
                             @if ($errors->has('title'))
                                 <div class="alert">{{$errors->first('title')}}</div>
@@ -60,7 +63,7 @@
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <input type="text" class="form-control col-md-6 col-sm-8 col-xs-12" id="keywords"
                                        name="keyword" placeholder="{{ trans('label.article.placeKeyword') }}"
-                                       required="required" value="{{old('keyword')}}">
+                                       required="required" value="{{$article->keyword}}">
                             </div>
                             @if ($errors->has('keyword'))
                                 <div class="alert">{{$errors->first('keyword')}}</div>
@@ -74,7 +77,7 @@
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <select name="cate_id" class="select2_cate form-control" tabindex="-1" >
-                                    {!! $catePresenter->getTopCate($categoryList, 0, false) !!}
+                                    {!! $catePresenter->getTopCate($categoryList, $article->cate_id,false) !!}
                                 </select>
                             </div>
                             @if ($errors->has('cate_id'))
@@ -88,7 +91,7 @@
                             </label>
                             <div class="col-md-6 col-sm-8 col-xs-12">
                                 <select name="label[]" multiple="multiple" class="select2_label form-control" tabindex="-1" >
-                                    {!! $tagPresenter->tagSelectOption($tagList) !!}
+                                    {!! $tagPresenter->tagSelectOption($tagList, $article->tags) !!}
                                 </select>
                             </div>
                             @if ($errors->has('label'))
@@ -112,7 +115,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <textarea name="introduce" class="form-control" rows="5"
                                           required="required" placeholder="{{ trans('label.article.placeIntro') }}"
-                                >{{ old('introduce') }}</textarea>
+                                >{{ $article->introduce }}</textarea>
                             </div>
                             @if ($errors->has('introduce'))
                                 <div class="alert">{{$errors->first('introduce')}}</div>
@@ -126,7 +129,7 @@
                             </label>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div id="editor">
-                                    <textarea style="display: none;">{!!old('editor-markdown-doc')!!}</textarea>
+                                    <textarea style="display: none;">{{$article->content_mark}}</textarea>
                                 </div>
                             </div>
                             @if ($errors->has('content'))

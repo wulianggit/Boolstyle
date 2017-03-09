@@ -16,6 +16,24 @@ class ArticleRepository extends Repository
     }
 
     /**
+     * 通过id获取文章信息
+     * @param $id
+     *
+     * @return mixed
+     * @author wuliang
+     */
+    public function getArticleById($id)
+    {
+        $article = $this->model->with('tags')->find($id);
+        if ($article && $article->tags) {
+            $tagsId = array_column($article->tags->toArray(), 'id');
+            $article->tags = $tagsId;
+        }
+        //dd($article->toArray());
+        return $article;
+    }
+
+    /**
      *  获取文章列表
      * @return mixed
      * @author wuliang
@@ -61,6 +79,42 @@ class ArticleRepository extends Repository
         
         if ($article->fill($data)->save())
         {
+            if (isset($data['label']) && $data['label'])
+            {
+                $article->tags()->sync($data['label']);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 更新文章
+     * @param $request
+     * @param $id
+     *
+     * @return bool
+     * @author wuliang
+     */
+    public function updateArticle($request, $id)
+    {
+        $article = $this->model->find($id);
+        $data    = $request->all();
+        if ($request->hasFile('cover')) {
+            // 如果重新上传了文章封面图,则删除之前的图
+            if ($article->img_path) {
+                $disk = QiniuStorage::disk('qiniu');
+                $disk->delete(substr($article->img_path, strpos($article->img_path, config('admin.globals.imagePath'))));
+            }
+
+            $imagePath = $this->uploadImages($request->file('cover'));
+            $data['img_path'] = $imagePath;
+        }
+
+        $data['content_html'] = $data['editor-html-code'];
+        $data['content_mark'] = $data['editor-markdown-doc'];
+
+        if ($article->fill($data)->save()) {
             if (isset($data['label']) && $data['label'])
             {
                 $article->tags()->sync($data['label']);

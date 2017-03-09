@@ -73,7 +73,7 @@ class ArticleController extends Controller
     public function create()
     {
         $categoryList = $this->cateModel->getCateList();
-        $tagList    = $this->tagModel->getTagList();
+        $tagList      = $this->tagModel->getTagList();
         return view('admin.article.create')->with(compact('categoryList', 'tagList'));
     }
 
@@ -103,7 +103,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/frontend/article/'.$id);
     }
 
     /**
@@ -114,19 +114,29 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoryList = $this->cateModel->getCateList();
+        $tagList      = $this->tagModel->getTagList();
+        $article      = $this->articleModel->getArticleById($id);
+        return view('admin.article.edit')->with(compact('categoryList', 'tagList', 'article'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        //
+        $result = $this->articleModel->updateArticle($request, $id);
+        if ($result) {
+            flash(trans('alert.article.update_success'), 'success');
+        } else {
+            flash(trans('alert.article.update_error'), 'error')->important();
+        }
+
+        return redirect('admin/article');
     }
 
     /**
