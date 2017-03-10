@@ -4,7 +4,7 @@
 <!-- begin content -->
 <div id="content" class="content" style="background: #f7f8fa !important;">
     <!-- begin container -->
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
         <!-- begin row -->
         <div class="row row-space-30" style="margin: 50px 0 0 0">
             <!-- begin col-9 -->

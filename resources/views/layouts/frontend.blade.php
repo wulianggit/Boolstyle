@@ -1,9 +1,9 @@
 <head>
     <meta charset="utf-8" />
-    <title>冷无缺的Blog</title>
+    <title>i包饺子的Blog</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="i冷无缺博客记录PHP学习以及实际工作中的问题" name="description" />
-    <meta content="i冷无缺,博客,laravel,PHP,学习笔记" name="keywords" />
+    <meta content="i包饺子博客记录PHP学习以及实际工作中的问题" name="description" />
+    <meta content="i包饺子,博客,laravel,PHP,学习笔记" name="keywords" />
     <meta content="boolstyle.xin" name="author" />
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
@@ -42,7 +42,7 @@
 
     <div id="footer-copyright" class="footer-copyright">
         <div class="container" style="text-align: center">
-            <span class="copyright">© {{date('Y',time())}} 冷无缺 All Right Reserved | 陇ICP备17000438号-1 | 博客 | 技术</span>
+            <span class="copyright">© {{date('Y',time())}} i包饺子 All Right Reserved | 陇ICP备17000438号-1 | 博客 | 技术</span>
         </div>
     </div>
 

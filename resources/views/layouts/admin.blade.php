@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=480, initial-scale=1.0">
 
-	<title>iWally后台系统</title>
+	<title>i包饺子博客后台系统</title>
 
 	{{--Bootstrap--}}
 	<link href="{{asset('backend/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">

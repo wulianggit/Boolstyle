@@ -5,23 +5,23 @@
 @endsection
 @section('content')
 <div id="content" class="content" style="background: #f7f8fa !important;">
-    <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Sports</a></li>
-            <li class="active">Bootstrap Carousel Blog Post</li>
-        </ul>
+    <div class="container" style="margin-top: 100px;;">
         <!-- begin row -->
-        <div class="row row-space-30">
+        <div class="row row-space-30" style="margin-top: 20px;">
             <!-- begin col-9 -->
             <div class="col-md-9">
                 <!-- begin post-detail -->
                 <div class="post-detail section-container">
-                    <h4 class="post-title">
-                        <a href="post_detail.html">Bootstrap Carousel Blog Post</a>
+                    <h4 class="post-title" style="margin-bottom: 10px;">
+                       {{$article['title']}}
                     </h4>
                     <div class="post-by">
-                        Posted By <a href="#">admin</a> <span class="divider">|</span> 10 June 2015 <span class="divider">|</span> <a href="#">Sports</a>, <a href="#">Mountain</a>, <a href="#">Bike</a> <span class="divider">|</span> 2 Comments
+                        发布时间: </span> {{$article['created_at']}}<span class="divider">|
+                        文章标签:
+                            @foreach($article['tags'] as $key => $val)
+                                 <a href="{{url('frontend/tag/'.$key)}}">{{$val}}</a>
+                            @endforeach
+                        </span>
                     </div>
 
                     <div class="markdown-body">
