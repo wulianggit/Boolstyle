@@ -33,7 +33,13 @@ class ArticleRepository extends Repository
      */
     public function getArticleContentById ($id)
     {
-        $article = $this->model->where('id',$id)->first()->toArray();
+        $article = $this->model->with('tags')->find($id)->toArray();
+        if ($article['tags']) {
+            foreach ($article['tags'] as $key => $val) {
+                $tags[$val['id']] = $val['name'];
+            }
+            $article['tags'] = $tags;
+        }
         return $article;
     }
 

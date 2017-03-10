@@ -11,7 +11,7 @@
             </button>
             <a href="/" class="navbar-brand">
                 <span class="brand-logo"></span>
-                <span class="brand-text">冷无缺</span>
+                <span class="brand-text">包饺子</span>
             </a>
         </div>
         <!-- end navbar-header -->
